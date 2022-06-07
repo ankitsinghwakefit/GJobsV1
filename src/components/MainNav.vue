@@ -1,13 +1,19 @@
 <template>
-  <nav class="py-8 border-b-2">
-    <a class="mx-12 text-3xl">Logo</a>
-    <a class="mx-6 text-lg font-light">Team</a>
-    <a class="mx-6 text-lg">Location</a>
-    <a class="mx-6 text-lg">Jobs</a>
-    <a class="mx-6 text-lg">Students</a>
-  </nav>
+  <header class="w-full text-sm">
+    <div class="fixed top-0 left-0 w-full h-16 bg-white">
+      <div
+        class="flex flex-nowrap h-full px-8 mx-auto border-b border-solid border-brand-gray-1"
+      >
+        <a data-testid="logo" class="flex items-center h-full text-xl"
+          >G Careers</a
+        >
+      </div>
+    </div>
+  </header>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "MainNav",
+};
 </script>
