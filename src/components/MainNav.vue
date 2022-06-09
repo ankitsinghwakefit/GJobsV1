@@ -24,14 +24,34 @@
             </li>
           </ul>
         </nav>
+        <div class="flex items-center h-full ml-auto">
+          <action-button
+            v-if="!loggedin"
+            data-testid="action-button-component"
+            text="SignIn"
+            type="secondary"
+            @click="toggleProfile"
+          />
+          <profile-image
+            v-else
+            data-testid="profile-image-component"
+            @click="toggleProfile"
+          />
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script>
+import ActionButton from "@/components/ActionButton.vue";
+import ProfileImage from "@/components/ProfileImage.vue";
 export default {
   name: "MainNav",
+  components: {
+    ActionButton,
+    ProfileImage,
+  },
   data() {
     return {
       company: "G Careers",
@@ -43,7 +63,13 @@ export default {
         "Students",
         "Jobs",
       ],
+      loggedin: false,
     };
+  },
+  methods: {
+    toggleProfile() {
+      this.loggedin = !this.loggedin;
+    },
   },
 };
 </script>

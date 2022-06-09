@@ -44,4 +44,71 @@ describe("MainNav", () => {
       "Jobs",
     ]);
   });
+
+  it("check render of signin button when user is logged out", () => {
+    const wrapper = shallowMount(MainNav, {
+      // by default this data is already available as false because it is initial state.
+      data() {
+        return {
+          loggedin: false,
+        };
+      },
+    });
+    const loginButton = wrapper.findComponent({ name: "ActionButton" });
+    const profileImage = wrapper.findComponent({ name: "ProfileImage" });
+    expect(loginButton.exists()).toBe(true);
+    expect(profileImage.exists()).toBe(false);
+    // or ---------------- using data test id
+    expect(
+      wrapper.find('[data-testid="action-button-component"]').exists()
+    ).toBe(true);
+    expect(
+      wrapper.find('[data-testid="profile-image-component"]').exists()
+    ).toBe(false);
+  });
+
+  it("check render of profileImage when user is logged In", async () => {
+    // const wrapper = shallowMount(MainNav, {
+    //   data() {
+    //     return {
+    //       loggedin: true,
+    //     };
+    //   },
+    // });
+    const wrapper = shallowMount(MainNav);
+    await wrapper.setData({
+      loggedin: true,
+    });
+    const loginButton = wrapper.findComponent({ name: "ActionButton" });
+    const profileImage = wrapper.findComponent({ name: "ProfileImage" });
+    expect(loginButton.exists()).toBe(false);
+    expect(profileImage.exists()).toBe(true);
+    // or ---------------- using data test id
+    expect(
+      wrapper.find('[data-testid="action-button-component"]').exists()
+    ).toBe(false);
+    expect(
+      wrapper.find('[data-testid="profile-image-component"]').exists()
+    ).toBe(true);
+  });
+
+  // now toggle the profile  with click event on the element
+  describe("check click event with click to toggle profile and signin", () => {
+    it("when the user clicks on signin button", async () => {
+      const wrapper = shallowMount(MainNav);
+      expect(
+        wrapper.find('[data-testid="action-button-component"]').exists()
+      ).toBe(true);
+      const signInButton = wrapper.find(
+        '[data-testid="action-button-component"]'
+      );
+      await signInButton.trigger("click");
+      expect(
+        wrapper.find('[data-testid="action-button-component"]').exists()
+      ).toBe(false);
+      expect(
+        wrapper.find('[data-testid="profile-image-component"]').exists()
+      ).toBe(true);
+    });
+  });
 });
