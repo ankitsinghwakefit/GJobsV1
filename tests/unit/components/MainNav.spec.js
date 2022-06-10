@@ -32,7 +32,6 @@ describe("MainNav", () => {
     const navTextss = navLinkItemsWithTest.map((navLinkItem) =>
       navLinkItem.text()
     );
-    console.log("navTexts", navTextss);
     const navTexts = navLinkItems.map((navLinkItem) => navLinkItem.text());
     // toEqual is uded to compare arrays and objects
     // toBe is used to compare premitives data types
@@ -80,9 +79,11 @@ describe("MainNav", () => {
       loggedin: true,
     });
     const loginButton = wrapper.findComponent({ name: "ActionButton" });
+    const subnav = wrapper.findComponent({ name: "Subnav" });
     const profileImage = wrapper.findComponent({ name: "ProfileImage" });
     expect(loginButton.exists()).toBe(false);
     expect(profileImage.exists()).toBe(true);
+    expect(subnav.exists()).toBe(true);
     // or ---------------- using data test id
     expect(
       wrapper.find('[data-testid="action-button-component"]').exists()

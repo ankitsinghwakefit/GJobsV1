@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full text-sm">
+  <header class="w-full text-sm" :class="addHeightInNav">
     <div class="fixed top-0 left-0 w-full h-16 bg-white">
       <div
         class="flex flex-nowrap h-full px-8 mx-auto border-b border-solid border-brand-gray-1"
@@ -39,6 +39,7 @@
           />
         </div>
       </div>
+      <Subnav v-if="loggedin" />
     </div>
   </header>
 </template>
@@ -46,11 +47,14 @@
 <script>
 import ActionButton from "@/components/ActionButton.vue";
 import ProfileImage from "@/components/ProfileImage.vue";
+import Subnav from "@/components/Subnav.vue";
+
 export default {
   name: "MainNav",
   components: {
     ActionButton,
     ProfileImage,
+    Subnav,
   },
   data() {
     return {
@@ -65,6 +69,14 @@ export default {
       ],
       loggedin: false,
     };
+  },
+  computed: {
+    addHeightInNav() {
+      return {
+        "h-16": !this.loggedin,
+        "h-32": this.loggedin,
+      };
+    },
   },
   methods: {
     toggleProfile() {
