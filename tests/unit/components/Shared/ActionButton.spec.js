@@ -1,5 +1,5 @@
 import { shallowMount } from "@vue/test-utils";
-import ActionButton from "@/components/ActionButton.vue";
+import ActionButton from "@/components/Shared/ActionButton.vue";
 
 describe("ActionButton", () => {
   it("should render button text", () => {

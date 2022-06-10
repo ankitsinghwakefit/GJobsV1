@@ -1,10 +1,10 @@
 import { shallowMount } from "@vue/test-utils";
-import Subnav from "@/components/Subnav.vue";
+import Subnav from "@/components/Navigation/Subnav.vue";
 
 describe("Subnav", () => {
   it("should render search svg", () => {
     const wrapper = shallowMount(Subnav);
-    expect(wrapper.find("svg").exists()).toBe(true);
+    expect(wrapper.findComponent({ name: "search" }).exists()).toBe(true);
   });
 
   it("should render jobs count", () => {
