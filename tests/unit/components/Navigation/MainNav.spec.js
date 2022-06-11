@@ -32,6 +32,7 @@ describe("MainNav", () => {
     const navTextss = navLinkItemsWithTest.map((navLinkItem) =>
       navLinkItem.text()
     );
+    console.log(navTextss);
     const navTexts = navLinkItems.map((navLinkItem) => navLinkItem.text());
     // toEqual is uded to compare arrays and objects
     // toBe is used to compare premitives data types
@@ -40,6 +41,7 @@ describe("MainNav", () => {
       "Locations",
       "Life at G Careers",
       "Students",
+      "Jobs",
       "Jobs",
     ]);
   });

@@ -13,7 +13,7 @@
             class="w-80 h-80 object-contain"
           />
         </div>
-        <div class="col-start-12 col-span-1"></div>
+        <div class="col-start-12 col-span-1">{{ getInfo }}</div>
       </div>
     </section>
   </main>
@@ -27,6 +27,13 @@ export default {
   components: {
     Headline,
     JobSearchForm,
+  },
+  computed: {
+    getInfo() {
+      console.log("route", this.$route);
+      console.log("router", this.$router);
+      return "null";
+    },
   },
 };
 </script>

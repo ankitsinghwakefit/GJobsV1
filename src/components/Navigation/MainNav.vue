@@ -4,11 +4,11 @@
       <div
         class="flex flex-nowrap h-full px-8 mx-auto border-b border-solid border-brand-gray-1"
       >
-        <a
-          :href="url"
+        <router-link
+          to="/"
           data-testid="logo"
           class="flex items-center h-full text-xl"
-          >{{ company }}</a
+          >{{ company }}</router-link
         >
         <nav class="h-full ml-12">
           <ul class="flex h-full p-0 m-0 list-none">
@@ -21,6 +21,15 @@
               <a href="" class="flex items-center h-full py-2.5">
                 {{ menu }}
               </a>
+            </li>
+
+            <li class="h-full ml-9">
+              <router-link
+                to="/jobs/results"
+                class="flex items-center h-full py-2.5"
+              >
+                Jobs
+              </router-link>
             </li>
           </ul>
         </nav>
