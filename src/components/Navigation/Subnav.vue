@@ -22,8 +22,12 @@ export default {
   data() {
     return {
       totalJobs: 1280,
-      onJobsSearchPage: true,
     };
+  },
+  computed: {
+    onJobsSearchPage() {
+      return this.$route.name === "JobResults";
+    },
   },
 };
 </script>

@@ -1,10 +1,10 @@
 <template>
-  <h1>This is an JobView {{ page }}</h1>
+  <div>Job page {{ page }}</div>
 </template>
 
 <script>
 export default {
-  name: "JobResultsView",
+  name: "JobView",
   computed: {
     page() {
       console.log("this", this.$route.query);

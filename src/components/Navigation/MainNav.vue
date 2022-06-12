@@ -18,17 +18,11 @@
               class="h-full ml-9"
               data-testid="nav-menu-items-list"
             >
-              <a href="" class="flex items-center h-full py-2.5">
-                {{ menu }}
-              </a>
-            </li>
-
-            <li class="h-full ml-9">
               <router-link
-                to="/jobs/results"
+                :to="menu.url"
                 class="flex items-center h-full py-2.5"
               >
-                Jobs
+                {{ menu.text }}
               </router-link>
             </li>
           </ul>
@@ -70,11 +64,11 @@ export default {
       company: "G Careers",
       url: "https://google.com",
       menuItems: [
-        "Teams",
-        "Locations",
-        "Life at G Careers",
-        "Students",
-        "Jobs",
+        { text: "Teams", url: "/jobs/results" },
+        { text: "Locations", url: "/jobs/results" },
+        { text: "Life at G Careers", url: "/jobs/results" },
+        { text: "Students", url: "/jobs/results" },
+        { text: "Jobs", url: "/jobs/results" },
       ],
       loggedin: false,
     };
@@ -85,6 +79,9 @@ export default {
         "h-16": !this.loggedin,
         "h-32": this.loggedin,
       };
+    },
+    isJobsSearchPage() {
+      return this.$route.path === "/jobs/results";
     },
   },
   methods: {

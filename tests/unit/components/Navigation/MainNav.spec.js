@@ -1,9 +1,25 @@
-import { shallowMount } from "@vue/test-utils";
+import { shallowMount, RouterLinkStub } from "@vue/test-utils";
 import MainNav from "@/components/Navigation/MainNav.vue";
 
 describe("MainNav", () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallowMount(MainNav, {
+      global: {
+        stubs: {
+          "router-link": RouterLinkStub,
+        },
+      },
+    });
+  });
   it("should render logo", () => {
-    const wrapper = shallowMount(MainNav);
+    // const wrapper = shallowMount(MainNav, {
+    //   global: {
+    //     stubs: {
+    //       "router-link": RouterLinkStub,
+    //     },
+    //   },
+    // });
     // 2nd aurg of mount can accept all thing we have in script tag of vue file
     // const wrapper = shallowMount(MainNav,{
     //   data(){
@@ -24,7 +40,6 @@ describe("MainNav", () => {
   });
 
   it("Should render list items of links inside navigation", () => {
-    const wrapper = shallowMount(MainNav);
     const navLinkItems = wrapper.findAll("li");
     const navLinkItemsWithTest = wrapper.findAll(
       '[data-testid="nav-menu-items-list"]'
@@ -46,14 +61,17 @@ describe("MainNav", () => {
     ]);
   });
 
-  it("check render of signin button when user is logged out", () => {
-    const wrapper = shallowMount(MainNav, {
-      // by default this data is already available as false because it is initial state.
-      data() {
-        return {
-          loggedin: false,
-        };
-      },
+  it("check render of signin button when user is logged out", async () => {
+    //  wrapper = shallowMount(MainNav, {
+    //   // by default this data is already available as false because it is initial state.
+    //   data() {
+    //     return {
+    //       loggedin: false,
+    //     };
+    //   },
+    // });
+    await wrapper.setData({
+      loggedin: false,
     });
     const loginButton = wrapper.findComponent({ name: "ActionButton" });
     const profileImage = wrapper.findComponent({ name: "ProfileImage" });
@@ -76,7 +94,13 @@ describe("MainNav", () => {
     //     };
     //   },
     // });
-    const wrapper = shallowMount(MainNav);
+    // const wrapper = shallowMount(MainNav, {
+    //   global: {
+    //     stubs: {
+    //       "router-link": RouterLinkStub,
+    //     },
+    //   },
+    // });
     await wrapper.setData({
       loggedin: true,
     });
@@ -98,7 +122,13 @@ describe("MainNav", () => {
   // now toggle the profile  with click event on the element
   describe("check click event with click to toggle profile and signin", () => {
     it("when the user clicks on signin button", async () => {
-      const wrapper = shallowMount(MainNav);
+      // const wrapper = shallowMount(MainNav, {
+      //   global: {
+      //     stubs: {
+      //       "router-link": RouterLinkStub,
+      //     },
+      //   },
+      // });
       expect(
         wrapper.find('[data-testid="action-button-component"]').exists()
       ).toBe(true);

@@ -26,6 +26,7 @@
       text="Search"
       type="primary"
       class="rounded-r-3xl border-t border-r border-b border-brand-gray-1 py-2.5"
+      @click="handleFormSubmit"
     />
   </form>
 </template>
@@ -53,6 +54,16 @@ export default {
     },
     handleLocationData(value) {
       this.location = value;
+    },
+    handleFormSubmit(event) {
+      event.preventDefault();
+      this.$router.push({
+        name: "JobResults",
+        query: {
+          role: this.role,
+          location: this.location,
+        },
+      });
     },
   },
 };
