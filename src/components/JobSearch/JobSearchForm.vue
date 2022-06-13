@@ -8,6 +8,7 @@
         <lable class="absolute left-0 -top-10"> Role </lable>
         <TextInput
           placeholder="Software engineer"
+          data-testid="role-input"
           @handle-input="handleRoleData"
         />
       </div>
@@ -19,10 +20,15 @@
 
       <div class="relative flex items-center flex-1 h-full pl-3">
         <lable class="absolute left-0 -top-10"> Where </lable>
-        <TextInput placeholder="Delhi" @handle-input="handleLocationData" />
+        <TextInput
+          placeholder="Delhi"
+          data-testid="location-input"
+          @handle-input="handleLocationData"
+        />
       </div>
     </div>
     <ActionButton
+      data-testid="submit-form-button"
       text="Search"
       type="primary"
       class="rounded-r-3xl border-t border-r border-b border-brand-gray-1 py-2.5"
