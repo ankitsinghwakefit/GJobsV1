@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import ActionButton from "@/components/Shared/ActionButton.vue";
 import ProfileImage from "@/components/Navigation/ProfileImage.vue";
 import Subnav from "@/components/Navigation/Subnav.vue";
@@ -70,7 +71,6 @@ export default {
         { text: "Students", url: "/jobs/results" },
         { text: "Jobs", url: "/jobs/results" },
       ],
-      loggedin: false,
     };
   },
   computed: {
@@ -83,10 +83,16 @@ export default {
     isJobsSearchPage() {
       return this.$route.path === "/jobs/results";
     },
+    // loggedin() {
+    //   return this.$store.state.isLoggedIn;
+    // },
+    ...mapState({
+      loggedin: (state) => state.isLoggedIn,
+    }),
   },
   methods: {
     toggleProfile() {
-      this.loggedin = !this.loggedin;
+      this.$store.commit("LOGIN_USER");
     },
   },
 };

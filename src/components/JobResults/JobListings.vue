@@ -34,19 +34,25 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapState, mapActions } from "vuex";
 import JobListing from "@/components/JobResults/JobListing.vue";
 export default {
   name: "JobListings",
   components: {
     JobListing,
   },
-  data() {
-    return {
-      jobs: [],
-    };
-  },
+  // data() {
+  //   return {
+  //     jobs: [],
+  //   };
+  // },
   computed: {
+    ...mapState({
+      jobs: (state) => state.jobs,
+    }),
+    // jobs() {
+    //   return this.$store.state.jobs;
+    // },
     displayedJobs() {
       const page = this.$route.query.page || "1";
       const pageNumber = Number.parseInt(page);
@@ -75,14 +81,16 @@ export default {
   },
   async mounted() {
     try {
-      const response = await axios.get(`${process.env.VUE_APP_API_URL}/jobs`);
-      this.jobs = response.data;
+      this.FETCH_JOBS();
+      // this.$store.dispatch("FETCH_JOBS");
+      // const response = await axios.get(`${process.env.VUE_APP_API_URL}/jobs`);
+      // this.jobs = response.data;
     } catch {
       (err) => new Error(err);
     }
   },
   methods: {
-    handleNext() {},
+    ...mapActions(["FETCH_JOBS"]),
   },
 };
 </script>
