@@ -10,7 +10,24 @@
     </ol>
     <div class="mt-8 mx-auto">
       <div class="flex flex-row flex-nowrap">
-        <p class="text-sm flex-grow">Page {{ pageNumber }}</p>
+        <p class="text-sm flex-grow" data-testid="current-page-number">
+          Page {{ currentPageNumber }}
+        </p>
+        <router-link
+          v-if="perviousPage"
+          data-testid="previous-page-link"
+          :to="previousPageLink"
+          class="mr-2 text-blue-500"
+          >Previous Page</router-link
+        >
+        <!-- :to="{name="jobsResults", query={page: previousPage}}" -->
+        <router-link
+          v-if="nextPage"
+          data-testid="next-page-link"
+          :to="nextPageLink"
+          class="ml-2 text-blue-500"
+          >Next Page</router-link
+        >
       </div>
     </div>
   </main>
@@ -37,13 +54,28 @@ export default {
       const endingPage = pageNumber * 10;
       return this.jobs.slice(startingPage, endingPage);
     },
-    pageNumber() {
+    currentPageNumber() {
       return Number.parseInt(this.$route.query.page || "1");
+    },
+    nextPage() {
+      let totalPages = this.jobs.length / 10;
+      return this.currentPageNumber < totalPages
+        ? this.currentPageNumber + 1
+        : null;
+    },
+    perviousPage() {
+      return this.currentPageNumber > 1 ? this.currentPageNumber - 1 : null;
+    },
+    nextPageLink() {
+      return `/jobs/results/?page=${this.currentPageNumber + 1}`;
+    },
+    previousPageLink() {
+      return `/jobs/results/?page=${this.currentPageNumber - 1}`;
     },
   },
   async mounted() {
     try {
-      const response = await axios.get("http://localhost:3000/jobs");
+      const response = await axios.get(`${process.env.VUE_APP_API_URL}/jobs`);
       this.jobs = response.data;
     } catch {
       (err) => new Error(err);
