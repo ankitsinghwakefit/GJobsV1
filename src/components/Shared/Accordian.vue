@@ -1,26 +1,16 @@
 <template>
-  <div class="accordion-container" @click="toggleAccordian">
-    <div>Accordian</div>
-    <div class="svg-container">
-      <AngleUp v-if="!openAccordianPanel" /> <AngleDown v-else />
-    </div>
+  <div class="border-b-2">
+    <slot />
   </div>
-  <div v-if="openAccordianPanel">child</div>
 </template>
 
 <script>
-import AngleUp from "@/assets/svg/AngleUp.vue";
-import AngleDown from "@/assets/svg/AngleDown.vue";
-
 export default {
   name: "Accordian",
-  components: {
-    AngleUp,
-    AngleDown,
-  },
   data() {
     return {
       openAccordianPanel: false,
+      checkedNames: [],
     };
   },
   methods: {
@@ -35,10 +25,25 @@ export default {
 .accordion-container {
   display: flex;
   justify-content: space-between;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  /* border-bottom: 1px solid #eee; */
 }
 .svg-container {
   width: 20px;
+}
+.checkbox-container {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+input {
+  margin: 0 8px;
+  /* font-size: 28px; */
+  width: 15px;
+  height: 15px;
+}
+label {
+  margin: 0 2px;
+  font-size: 20px;
 }
 </style>

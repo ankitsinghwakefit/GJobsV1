@@ -9,19 +9,30 @@
           <ActionButton text="Clear filters" type="secondary" />
         </div>
       </div>
-      <Accordian />
+      <Degree @degreeFilter="handleFilter" />
+      <JobTypes />
+      <Organizations />
     </section>
   </div>
 </template>
 
 <script>
-import Accordian from "@/components/Shared/Accordian.vue";
+import Degree from "@/components/Shared/Degree.vue";
+import JobTypes from "@/components/Shared/JobTypes.vue";
+import Organizations from "@/components/Shared/Organizations.vue";
 import ActionButton from "@/components/Shared/ActionButton.vue";
 export default {
   name: "JobFilterSidebar",
   components: {
     ActionButton,
-    Accordian,
+    Degree,
+    JobTypes,
+    Organizations,
+  },
+  methods: {
+    handleFilter(value) {
+      console.log("degree", value);
+    },
   },
 };
 </script>
