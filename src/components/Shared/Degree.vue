@@ -9,7 +9,7 @@
     <div
       v-if="openAccordianPanel"
       class="checkbox-container"
-      @click="handleFilter"
+      @input="handleFilter"
     >
       <input v-model="checkedNames" type="checkbox" value="Assiociate" />
       <label for="assiociate">Assiociate</label>

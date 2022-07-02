@@ -1,12 +1,39 @@
 <template>
   <div class="border-b-2">
-    <slot />
+    <div class="accordion-container" @click="toggleAccordian">
+      <div><h1>{{heading}}</h1></div>
+      <div class="svg-container">
+        <AngleUp v-if="!openAccordianPanel" /> <AngleDown v-else />
+      </div>
+    </div>
+    <div v-if="openAccordianPanel" class="checkbox-container">
+      <slot></slot>
+      <!-- <input v-model="checkedNames" type="checkbox" value="Full-time" />
+      <label for="Full-time">Full-time</label>
+      <input v-model="checkedNames" type="checkbox" value="Part-time" />
+      <label for="Part-time">Part-time</label><br />
+      <input v-model="checkedNames" type="checkbox" value="Temporary" />
+      <label for="Temporary">Temporary</label> -->
+    </div>
   </div>
 </template>
 
 <script>
+import AngleUp from "@/assets/svg/AngleUp.vue";
+import AngleDown from "@/assets/svg/AngleDown.vue";
+
 export default {
   name: "Accordian",
+  components: {
+    AngleUp,
+    AngleDown,
+  },
+  props: {
+    heading: {
+      type: String,
+      required:true
+    }
+  },
   data() {
     return {
       openAccordianPanel: false,

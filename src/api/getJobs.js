@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const getJobs = async () => {
-  const response = await axios.get(`${process.env.VUE_APP_API_URL}/jobs`);
+  const response = await axios.get(`http://localhost:3000/jobs`);
   return response.data;
 };
 

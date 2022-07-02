@@ -21,13 +21,17 @@ export default {
   },
   data() {
     return {
-      totalJobs: 1280,
+      // totalJobs: 1280,
     };
   },
   computed: {
     onJobsSearchPage() {
       return this.$route.name === "JobResults";
     },
+    totalJobs(){
+      let num = this.$store.getters.FILTER_JOBS_BY_ORGANIZATIONS
+      return num.length
+    }
   },
 };
 </script>

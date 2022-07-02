@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapActions } from "vuex";
 import JobListing from "@/components/JobResults/JobListing.vue";
 export default {
   name: "JobListings",
@@ -47,12 +47,12 @@ export default {
   //   };
   // },
   computed: {
-    ...mapState({
-      jobs: (state) => state.jobs,
-    }),
-    // jobs() {
-    //   return this.$store.state.jobs;
-    // },
+    // ...mapState({
+    //   jobs: (state) => state.jobs,
+    // }),
+    jobs() {
+      return this.$store.getters.FILTER_JOBS_BY_ORGANIZATIONS;
+    },
     displayedJobs() {
       const page = this.$route.query.page || "1";
       const pageNumber = Number.parseInt(page);

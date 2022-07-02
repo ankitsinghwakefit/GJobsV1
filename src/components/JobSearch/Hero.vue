@@ -16,10 +16,15 @@
         <div class="col-start-12 col-span-1"></div>
       </div>
     </section>
+    <Spotlight #default="slotProps">
+      <h1>{{slotProps.spotlight.title}}</h1>
+      <h3>{{slotProps.spotlight.description}}</h3>
+    </Spotlight>
   </main>
 </template>
 
 <script>
+import Spotlight from "@/components/Shared/Spotlight.vue"
 import Headline from "@/components/JobSearch/Headline.vue";
 import JobSearchForm from "@/components/JobSearch/JobSearchForm.vue";
 export default {
@@ -27,6 +32,7 @@ export default {
   components: {
     Headline,
     JobSearchForm,
+    Spotlight
   },
 };
 </script>

@@ -65,7 +65,7 @@ export default {
       company: "G Careers",
       url: "https://google.com",
       menuItems: [
-        { text: "Teams", url: "/jobs/results" },
+        { text: "Teams", url: "/teams" },
         { text: "Locations", url: "/jobs/results" },
         { text: "Life at G Careers", url: "/jobs/results" },
         { text: "Students", url: "/jobs/results" },
